@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css"
+        rel="stylesheet" type="text/css" />
+    <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;600;700;900&display=swap"
+        rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='libary/styles.css') }}">
+    <title>Papaya</title>
+</head>
+
+<body>
+    <div class="filter">
+        <div class="container">
+            <h1 class="header">Papaya Ripeness Classifier</h1>
+            <div class="card" style="width: 18rem;">
+                <div class="my-card">
+                    <div class="header-card">
+                        <form class="form-horizontal" action="/submit" method="post" enctype="multipart/form-data">
+                            
+                            {% if not prediction %}
+                            <input type='file' onchange="readURL(this);" name="my_image" id="pwd" class="inputfile" />
+                           <div class="text-center choose" style="margin-bottom: 1rem;">
+                            <label class='btn btn-outline-secondary' for="pwd">Choose a file</label>
+
+                           </div>
+                            {% endif %}
+                            <!-- <input type="file" class="form-control" placeholder="Hours Studied"  name="my_image" id="pwd"> -->
+                    
+                            {% if prediction %}
+                              
+                            <img src="{{img_path}}"> 
+                        
+                          
+                  
+                            {% else %}
+                            <img id="blah" src="{{ url_for('static', filename='libary/papaya.jpg') }}" />
+                            {% endif %}
+                    </div>
+                
+
+
+                    <div class="result-card">
+                        {% if prediction %}
+                        <h5 class="card-title">{{prediction[0]}}</h5> 
+                        <p class="card-text">Our model predict this image with {{prediction[1]}} confidence</p>
+                        <a href="{{ url_for('home')}}" class="btn btn-light">Upload Next Image</button> 
+                        {% else %}
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-classify">Classify</button> 
+                        </div>
+                        {% endif %} 
+                        
+                    </div> 
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+        <script src="{{ url_for('static', filename='libary/scripts.js') }}"></script>
+
+</body>
+
+</html>
