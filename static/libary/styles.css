@@ -4,11 +4,13 @@
   font-family: "Montserrat", sans-serif;
 }
 
-body {
-  background-image: url("bg.jpg");
-  background-size: auto;
-  max-width: 100%;
-  height: auto;
+body{
+    background-image: url('bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    max-width: 100%;
+    height: auto;
+    
 }
 
 h1 {
